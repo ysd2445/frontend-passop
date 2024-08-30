@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useRef, useState, useEffect } from 'react'
 const Home = () => {
     const getPasswords=async ()=>{
-        let a = await fetch('http://localhost:3000/')
+        let a = await fetch(`http://localhost:3000`)
         let passwords =await  a.json()
         if (passwords) {
             console.log(passwords);
@@ -42,7 +42,7 @@ const Home = () => {
     const savePassword = async() => {
         if (form.site.length > 3 && form.username.length > 3 && form.password.length > 3) {
             // console.log(form);
-            const res = await fetch('http://localhost:3000/', {
+            const res = await fetch(`http://localhost:3000`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json"
@@ -51,7 +51,7 @@ const Home = () => {
               });
             setPassword([...password, { ...form, id: uuidv4() }])
             // console.log(password);
-            await fetch('http://localhost:3000/', {
+            await fetch(`http://localhost:3000`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -99,7 +99,7 @@ const Home = () => {
 
             setPassword(password.filter(item => item.id !== id))
             // console.log(password);
-            await fetch('http://localhost:3000/', {
+            await fetch(`http://localhost:3000`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json"
